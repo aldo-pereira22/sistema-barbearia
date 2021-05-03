@@ -1,4 +1,4 @@
-package com.devs.sistemabarbearia.repository;
+package com.devs.sistemabarbearia.pessoa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
