@@ -41,10 +41,10 @@ public class PessoaController {
 	
 	@DeleteMapping("/pessoa")
 	 public void deletaPessoa(@RequestBody Pessoa pessoa) {
-		pessoaRepositroy.delete(pessoa);
-		
+		pessoaRepositroy.delete(pessoa);	
 	}
-	@PutMapping("/produto")
+	
+	@PutMapping("/pessoa")
 	public Pessoa update(@RequestBody Pessoa pessoa) {
 		return pessoaRepositroy.save(pessoa);
 	}
