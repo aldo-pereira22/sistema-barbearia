@@ -3,10 +3,16 @@ package com.devs.sistemabarbearia.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+@Entity
 public class Barbeiro {
 
 	@Id
@@ -17,8 +23,11 @@ public class Barbeiro {
 	private String email;
 	private String senha;
 	private String tipo;
+	
+	@OneToOne
 	private Agenda agenda;
 	
+	@OneToMany
 	List<Servico> listaServicos = new ArrayList<Servico>();
 	
 	public Barbeiro() {
