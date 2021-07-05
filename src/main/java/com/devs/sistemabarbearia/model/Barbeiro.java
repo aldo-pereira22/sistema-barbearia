@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -30,7 +29,7 @@ public class Barbeiro {
 	List<Servico> listaServicos = new ArrayList<Servico>();
 	
 	public Barbeiro() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Barbeiro(Long id, String cpf, String nome, String email, String senha, String tipo) {
