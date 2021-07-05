@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,9 +25,18 @@ public class Barbeiro {
 	@OneToOne
 	private Agenda agenda;
 	
-	@OneToMany
-	List<Servico> listaServicos = new ArrayList<Servico>();
+	@ManyToMany(mappedBy = "barbeiros")
+	private List<Servico> servicos = new ArrayList<Servico>();
 	
+	
+	public List<Servico> getServicos() {
+		return servicos;
+	}
+
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
+	}
+
 	public Barbeiro() {
 		
 	}
@@ -98,12 +107,6 @@ public class Barbeiro {
 		this.agenda = agenda;
 	}
 
-	public List<Servico> getListaServicos() {
-		return listaServicos;
-	}
 
-	public void setListaServicos(List<Servico> listaServicos) {
-		this.listaServicos = listaServicos;
-	}
 	
 }

@@ -1,9 +1,17 @@
 package com.devs.sistemabarbearia.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -13,9 +21,17 @@ public class Servico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	private String nome;
 	private double valor;
 	private int tempo;
+	
+
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "SERVICO_BARBEIRO", joinColumns = @JoinColumn(name = "servico_id"),
+	inverseJoinColumns = @JoinColumn(name = "barbeiro_id "))
+	private List<Barbeiro> barbeiros = new ArrayList<Barbeiro>();
 	
 	public Servico() {
 		// TODO Auto-generated constructor stub
@@ -27,6 +43,14 @@ public class Servico {
 		this.nome = nome;
 		this.valor = valor;
 		this.tempo = tempo;
+	}
+
+	public List<Barbeiro> getBarbeiros() {
+		return barbeiros;
+	}
+
+	public void setBarbeiros(List<Barbeiro> barbeiros) {
+		this.barbeiros = barbeiros;
 	}
 
 	public String getNome() {
