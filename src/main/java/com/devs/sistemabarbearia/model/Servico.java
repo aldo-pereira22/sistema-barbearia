@@ -1,5 +1,6 @@
 package com.devs.sistemabarbearia.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
-public class Servico {
-	
+public class Servico implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,17 +27,14 @@ public class Servico {
 	private double valor;
 	private int tempo;
 	
-
-	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "SERVICO_BARBEIRO", joinColumns = @JoinColumn(name = "servico_id"),
-	inverseJoinColumns = @JoinColumn(name = "barbeiro_id "))
+	@JoinTable(name = "BARBEIRO_SERVICO",
+				joinColumns = @JoinColumn(name= "servico_id"),
+				inverseJoinColumns = @JoinColumn(name="barbeiro_id")
+			)
 	private List<Barbeiro> barbeiros = new ArrayList<Barbeiro>();
 	
-	public Servico() {
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	public Servico(Long id, String nome, double valor, int tempo) {
 		super();
 		this.id = id;
@@ -45,15 +43,13 @@ public class Servico {
 		this.tempo = tempo;
 	}
 
-	public List<Barbeiro> getBarbeiros() {
-		return barbeiros;
+	public Servico() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setBarbeiros(List<Barbeiro> barbeiros) {
-		this.barbeiros = barbeiros;
-	}
 
 	public String getNome() {
+		
 		return nome;
 	}
 
@@ -108,6 +104,14 @@ public class Servico {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public List<Barbeiro> getBarbeiros() {
+		return barbeiros;
+	}
+
+	public void setBarbeiros(List<Barbeiro> barbeiros) {
+		this.barbeiros = barbeiros;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.devs.sistemabarbearia.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Barbeiro {
+public class Barbeiro implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,16 +28,17 @@ public class Barbeiro {
 	@OneToOne
 	private Agenda agenda;
 	
+	
 	@ManyToMany(mappedBy = "barbeiros")
 	private List<Servico> servicos = new ArrayList<Servico>();
 	
-	
+
 	public List<Servico> getServicos() {
 		return servicos;
 	}
 
-	public void setServicos(List<Servico> servicos) {
-		this.servicos = servicos;
+	public void setServicos(List<Servico> servico) {
+		this.servicos = servico;
 	}
 
 	public Barbeiro() {
@@ -106,6 +110,34 @@ public class Barbeiro {
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Barbeiro other = (Barbeiro) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+
+	
 
 
 	

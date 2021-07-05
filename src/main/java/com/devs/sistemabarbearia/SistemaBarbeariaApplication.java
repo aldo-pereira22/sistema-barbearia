@@ -30,14 +30,24 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-			Barbeiro barbeiro = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", "123", "BARBEIRO");
-			Servico servico = new Servico(null, "CORTE DE CABELO",20.50, 20);
+			Barbeiro b1 = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", "123", "BARBEIRO");
+			Barbeiro b2 = new Barbeiro(null, "222222", "João", "joao@gmail.com", "1111", "BARBEIRO");
 			
-			sr.save(servico);
-			br.save(barbeiro);
+			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.0, 30);
+			Servico s2 = new Servico(null, "SOBRANCELHA", 10.0, 30);
+			Servico s3 = new Servico(null, "PROGRESSIVA", 50.0, 20);
 			
-			barbeiro.getServicos().addAll(Arrays.asList(servico));
-			servico.getBarbeiros().add(barbeiro);
+			b1.getServicos().addAll(Arrays.asList(s1, s2, s3));
+			b2.getServicos().addAll(Arrays.asList(s2));
+
+			s1.getBarbeiros().addAll(Arrays.asList(b1));
+			s2.getBarbeiros().addAll(Arrays.asList(b1,b2));
+			s3.getBarbeiros().addAll(Arrays.asList(b1));
+			
+			br.saveAll(Arrays.asList(b1, b2));
+			sr.saveAll(Arrays.asList(s1, s2,s3));
+
+
 			
 		
 		
