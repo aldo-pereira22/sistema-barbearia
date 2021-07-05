@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Servico implements Serializable {
@@ -27,6 +29,7 @@ public class Servico implements Serializable {
 	private double valor;
 	private int tempo;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "BARBEIRO_SERVICO",
 				joinColumns = @JoinColumn(name= "servico_id"),
