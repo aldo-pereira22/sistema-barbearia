@@ -26,28 +26,28 @@ public class ServicoController {
 	@Autowired
 	ServicoRepository servicoRepository;
 
-	@GetMapping
+	@GetMapping(value = "/servicos")
 	public List<Servico> listaServicos() {
 		return servicoRepository.findAll();
 	}
 
-	@PostMapping("/servico")
+	@PostMapping("/servicos")
 	public Servico salvarServico(@RequestBody Servico servico) { // RequestBody, dá acesso aos atributos que estão no
 																	// arquivo JSON
 		return servicoRepository.save(servico);
 	}
 
-	@DeleteMapping("/servico")
+	@DeleteMapping("/servicos")
 	public void deletaServico(@RequestBody Servico servico) {
 		servicoRepository.delete(servico);
 	}
 
-	@PutMapping("/servico")
+	@PutMapping("/servicos")
 	public Servico update(@RequestBody Servico servico) {
 		return servicoRepository.save(servico);
 	}
 
-	@GetMapping("/servico/{id}")
+	@GetMapping("/servicos/{id}")
 	public Servico buscaServicoId(@PathVariable(value = "id") Long id) throws ObjectNotFoundException {
 		Servico servico = servicoRepository.findByid(id);
 		if (servico == null) {
