@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devs.sistemabarbearia.model.Barbeiro;
 import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @RestController
 @RequestMapping(value="/barbearia")
 @CrossOrigin(origins ="*" )
@@ -31,8 +33,14 @@ public class BarbeiroController {
 	}
 	
 	@GetMapping("/barbeiro/{id}")
-	public Barbeiro buscaBarbeiroId(@PathVariable(value = "id") Long id) {
-		return barbeiroRepository.findByid(id);
+	public Barbeiro buscaBarbeiroId(@PathVariable(value = "id") Long id) throws ObjectNotFoundException {
+		
+		Barbeiro barbeiro = barbeiroRepository.findByid(id);
+		if(barbeiro == null) {
+			throw new ObjectNotFoundException("Barbeiro com ID: "+id+ " Não encontrado!");
+		}
+		
+		return barbeiro;
 	}
 	
 	@PostMapping("/barbeiro")

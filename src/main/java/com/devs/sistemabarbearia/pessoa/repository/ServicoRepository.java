@@ -8,6 +8,6 @@ import com.devs.sistemabarbearia.model.Servico;
 @Repository
 public interface ServicoRepository extends JpaRepository<Servico, Long> {
 	
-	//Servico findByid(Long ind);
+	Servico findByid(Long ind);
 	
 }

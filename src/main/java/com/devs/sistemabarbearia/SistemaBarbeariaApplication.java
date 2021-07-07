@@ -33,9 +33,9 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			Barbeiro b1 = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", "123", "BARBEIRO");
 			Barbeiro b2 = new Barbeiro(null, "222222", "João", "joao@gmail.com", "1111", "BARBEIRO");
 			
-			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.0, 30);
-			Servico s2 = new Servico(null, "SOBRANCELHA", 10.0, 30);
-			Servico s3 = new Servico(null, "PROGRESSIVA", 50.0, 20);
+			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
+			Servico s2 = new Servico(null, "SOBRANCELHA", 10.50, 30);
+			Servico s3 = new Servico(null, "PROGRESSIVA", 50.89, 20);
 			
 			b1.getServicos().addAll(Arrays.asList(s1, s2, s3));
 			b2.getServicos().addAll(Arrays.asList(s2));
@@ -46,10 +46,7 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			
 			br.saveAll(Arrays.asList(b1, b2));
 			sr.saveAll(Arrays.asList(s1, s2,s3));
-
-
-			
-		
+	
 		
 	}
 
