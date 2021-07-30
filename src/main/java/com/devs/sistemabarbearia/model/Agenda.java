@@ -28,6 +28,7 @@ public class Agenda {
 	public Agenda() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Long getId() {
 		return id;
 	}
