@@ -19,7 +19,7 @@ import com.devs.sistemabarbearia.pessoa.repository.ServicoRepository;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value = "/servicos")
+@RequestMapping(value = "/barbearia")
 @CrossOrigin(origins = "*")
 public class ServicoController {
 
