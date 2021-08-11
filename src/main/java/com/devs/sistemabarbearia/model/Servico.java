@@ -24,7 +24,6 @@ public class Servico implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
 	private String nome;
 	private double valor;
 	private int tempo;
