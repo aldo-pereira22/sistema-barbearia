@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.devs.sistemabarbearia.model.Pessoa;
+import com.devs.sistemabarbearia.model.Cliente;
 import com.devs.sistemabarbearia.pessoa.repository.PessoaRepository;
 
 @RestController
@@ -25,27 +25,27 @@ public class PessoaController {
 	
 
 	@GetMapping("/pessoas")
-	public List<Pessoa> listaPessoas(){
+	public List<Cliente> listaPessoas(){
 		return pessoaRepositroy.findAll();
 	}
 	
 	@GetMapping("/pessoa/{id}")
-	public Pessoa buscarPessoaId(@PathVariable(value = "id") Long id) {
+	public Cliente buscarPessoaId(@PathVariable(value = "id") Long id) {
 		return pessoaRepositroy.findByid(id);
 	}
 	
 	@PostMapping("/pessoa")
-	 public Pessoa salvaProduto(@RequestBody Pessoa pessoa) {
+	 public Cliente salvaProduto(@RequestBody Cliente pessoa) {
 		return pessoaRepositroy.save(pessoa);
 	}
 	
 	@DeleteMapping("/pessoa")
-	 public void deletaPessoa(@RequestBody Pessoa pessoa) {
+	 public void deletaPessoa(@RequestBody Cliente pessoa) {
 		pessoaRepositroy.delete(pessoa);	
 	}
 	
 	@PutMapping("/pessoa")
-	public Pessoa update(@RequestBody Pessoa pessoa) {
+	public Cliente update(@RequestBody Cliente pessoa) {
 		return pessoaRepositroy.save(pessoa);
 	}
 	

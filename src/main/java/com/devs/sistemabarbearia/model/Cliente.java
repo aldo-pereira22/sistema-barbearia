@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Pessoa {
+public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
