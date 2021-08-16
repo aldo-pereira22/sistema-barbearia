@@ -4,8 +4,8 @@ public enum Tipo {
 	
 	
 
-	ADMIM(1, "ADMINISTRADOR"),
-	USER(2, "USUÀRIO");
+	ADMIM(1, "ADM"),
+	USER(2, "USER");
 	
 	private int cod;
 	private String descricao;

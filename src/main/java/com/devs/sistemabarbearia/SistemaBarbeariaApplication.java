@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.devs.sistemabarbearia.model.Barbeiro;
 import com.devs.sistemabarbearia.model.Servico;
+import com.devs.sistemabarbearia.model.enums.Tipo;
 import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
 import com.devs.sistemabarbearia.pessoa.repository.ServicoRepository;
 
@@ -30,8 +31,9 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-			Barbeiro b1 = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", "123", "BARBEIRO");
-			Barbeiro b2 = new Barbeiro(null, "222222", "João", "joao@gmail.com", "1111", "BARBEIRO");
+			Barbeiro b1 = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", "123", Tipo.ADMIM);
+			Barbeiro b2 = new Barbeiro(null, "222222", "João", "joao@gmail.com", "1111",Tipo.USER);
+	
 			
 			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
 			Servico s2 = new Servico(null, "SOBRANCELHA", 10.50, 30);
