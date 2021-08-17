@@ -17,7 +17,7 @@ import com.devs.sistemabarbearia.pessoa.repository.PessoaRepository;
 
 @RestController
 @RequestMapping(value="/barbearia")
-@CrossOrigin(origins ="*" )
+//@CrossOrigin(origins ="*" )
 public class PessoaController {
 
 	@Autowired

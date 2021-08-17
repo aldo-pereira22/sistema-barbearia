@@ -35,7 +35,6 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			Barbeiro b1 = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", "123", Perfil.ADMIM);
 			Barbeiro b2 = new Barbeiro(null, "222222", "João", "joao@gmail.com", "1111",Perfil.USER);
 	
-			Horario horario = new Horario("ativo");  
 			
 			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
 			Servico s2 = new Servico(null, "SOBRANCELHA", 10.50, 30);

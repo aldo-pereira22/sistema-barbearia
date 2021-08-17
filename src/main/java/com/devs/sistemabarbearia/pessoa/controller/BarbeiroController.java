@@ -23,7 +23,7 @@ import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value="/barbearia")
-@CrossOrigin(origins ="*" )
+//@CrossOrigin(origins ="*" )
 public class BarbeiroController {
 
 	@Autowired
