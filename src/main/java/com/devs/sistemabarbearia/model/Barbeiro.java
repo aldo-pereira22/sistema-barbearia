@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import com.devs.sistemabarbearia.model.enums.Tipo;
+import com.devs.sistemabarbearia.model.enums.Perfil;
 
 @Entity
 public class Barbeiro implements Serializable {
@@ -25,7 +25,7 @@ public class Barbeiro implements Serializable {
 	private String nome;
 	private String email;
 	private String senha;
-	private Integer tipo;
+	private Integer perfil;
 	
 	@OneToOne
 	private Agenda agenda;
@@ -47,14 +47,14 @@ public class Barbeiro implements Serializable {
 		
 	}
 
-	public Barbeiro(Long id, String cpf, String nome, String email, String senha, Tipo tipo) {
+	public Barbeiro(Long id, String cpf, String nome, String email, String senha, Perfil perfil) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.tipo = tipo.getCod();
+		this.perfil = perfil.getCod();
 	}
 
 	public Long getId() {
@@ -97,12 +97,12 @@ public class Barbeiro implements Serializable {
 		this.senha = senha;
 	}
 
-	public Tipo getTipo() {
-		return Tipo.toEnum(tipo);
+	public Perfil getPerfil() {
+		return Perfil.toEnum(perfil);
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo.getCod();
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil.getCod();
 	}
 
 	public Agenda getAgenda() {

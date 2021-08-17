@@ -17,7 +17,6 @@ public class Agenda {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Date horarioAtendimento ;
 	
 	@OneToOne
 	private Barbeiro barbeiro;
@@ -35,18 +34,11 @@ public class Agenda {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getHorarioAtendimento() {
-		return horarioAtendimento;
-	}
-	public void setHorarioAtendimento(Date horarioAtendimento) {
-		this.horarioAtendimento = horarioAtendimento;
-	}
 	
 
-	public Agenda(Long id, Date horarioAtendimento, Barbeiro barbeiro) {
+	public Agenda(Long id, Barbeiro barbeiro) {
 		super();
 		this.id = id;
-		this.horarioAtendimento = horarioAtendimento;
 		this.setBarbeiro(barbeiro);
 	}
 

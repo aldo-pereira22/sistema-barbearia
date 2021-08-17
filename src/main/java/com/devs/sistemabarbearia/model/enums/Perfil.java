@@ -1,16 +1,16 @@
 package com.devs.sistemabarbearia.model.enums;
 
-public enum Tipo {
+public enum Perfil {
 	
 	
 
 	ADMIM(1, "ADM"),
 	USER(2, "USER");
 	
-	private int cod;
+	private int cod;	
 	private String descricao;
 	
-	private Tipo(int cod, String descricao) {
+	private Perfil(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
@@ -23,12 +23,12 @@ public enum Tipo {
 		return descricao;
 	}
 	
-	public static Tipo toEnum(Integer cod) {
+	public static Perfil toEnum(Integer cod) {
 		if(cod == null) {
 			return null;
 		}
 		
-		for(Tipo x : Tipo.values()) {
+		for(Perfil x : Perfil.values()) {
 			if(cod.equals(x.getCod())) {
 				return x;
 			}
