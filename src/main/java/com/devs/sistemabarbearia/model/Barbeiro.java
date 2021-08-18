@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import com.devs.sistemabarbearia.model.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Barbeiro implements Serializable {
@@ -24,6 +25,8 @@ public class Barbeiro implements Serializable {
 	private String cpf;
 	private String nome;
 	private String email;
+	
+	@JsonIgnore
 	private String senha;
 	private Integer perfil;
 	

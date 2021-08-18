@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Cliente {
@@ -15,6 +17,7 @@ public class Cliente {
 	private String cpf;
 	private String nome;
 	private String email;
+	@JsonIgnore
 	private String senha;
 	private String tipo;
 	

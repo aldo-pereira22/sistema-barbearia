@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.devs.sistemabarbearia.model.Barbeiro;
 import com.devs.sistemabarbearia.model.Horario;
@@ -22,6 +23,9 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	BarbeiroRepository br;
 	
 	@Autowired
+	BCryptPasswordEncoder bc;
+	
+	@Autowired
 	ServicoRepository sr;
 	
 	public static void main(String[] args) {
@@ -32,8 +36,8 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-			Barbeiro b1 = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", "123", Perfil.ADMIM);
-			Barbeiro b2 = new Barbeiro(null, "222222", "João", "joao@gmail.com", "1111",Perfil.USER);
+			Barbeiro b1 = new Barbeiro(null, "1111", "Aldo","aldo@gmail.com", bc.encode("1234"), Perfil.ADMIM);
+			Barbeiro b2 = new Barbeiro(null, "222222", "João", "joao@gmail.com", bc.encode("1234"),Perfil.USER);
 	
 			
 			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
