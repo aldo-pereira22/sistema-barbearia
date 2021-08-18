@@ -30,9 +30,6 @@ public class BarbeiroController {
 	@Autowired
 	BarbeiroRepository barbeiroRepository;
 	
-	@Autowired
-	BCryptPasswordEncoder bc;
-	
 
 	@GetMapping("/barbeiros")
 	public List<Barbeiro> listaBarbeiros(){
@@ -52,7 +49,6 @@ public class BarbeiroController {
 	
 	@PostMapping("/barbeiro")
 	 public ResponseEntity<?> salvarBarbeiro(@RequestBody Barbeiro barbeiro) {
-		barbeiro.setSenha(bc.encode(barbeiro.getSenha()));
 		barbeiro = barbeiroRepository.save(barbeiro);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(barbeiro.getId()).toUri();

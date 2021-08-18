@@ -2,9 +2,15 @@ package com.devs.sistemabarbearia.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +34,10 @@ public class Barbeiro implements Serializable {
 	
 	@JsonIgnore
 	private String senha;
-	private Integer perfil;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis =  new HashSet<>();
 	
 	@OneToOne
 	private Agenda agenda;
@@ -47,17 +56,17 @@ public class Barbeiro implements Serializable {
 	}
 
 	public Barbeiro() {
-		
+		addPerfil(Perfil.USER);
 	}
 
-	public Barbeiro(Long id, String cpf, String nome, String email, String senha, Perfil perfil) {
+	public Barbeiro(Long id, String cpf, String nome, String email, String senha) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.perfil = perfil.getCod();
+		addPerfil(Perfil.USER);
 	}
 
 	public Long getId() {
@@ -100,18 +109,18 @@ public class Barbeiro implements Serializable {
 		this.senha = senha;
 	}
 
-	public Perfil getPerfil() {
-		return Perfil.toEnum(perfil);
+	public Set<Perfil> getPerfis(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil.getCod();
+	public void addPerfil( Perfil perfil) {
+		perfis.add(perfil.getCod());
 	}
-
 	public Agenda getAgenda() {
 		return agenda;
 	}
 
+	
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}

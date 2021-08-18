@@ -4,8 +4,8 @@ public enum Perfil {
 	
 	
 
-	ADMIM(1, "ADM"),
-	USER(2, "USER");
+	ADMIM(1, "ROLE_ADMIN"),
+	USER(2, "ROLE_USER");
 	
 	private int cod;	
 	private String descricao;
