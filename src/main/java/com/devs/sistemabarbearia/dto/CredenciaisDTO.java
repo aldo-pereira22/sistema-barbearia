@@ -10,9 +10,15 @@ public class CredenciaisDTO implements Serializable {
 	private String senha;
 	
 	public CredenciaisDTO() {
-		// TODO Auto-generated constructor stub
+
 	}
 	
+	public CredenciaisDTO(String email, String senha) {
+		super();
+		this.email = email;
+		this.senha = senha;
+	}
+
 	public String getEmail() {
 		return email;
 	}

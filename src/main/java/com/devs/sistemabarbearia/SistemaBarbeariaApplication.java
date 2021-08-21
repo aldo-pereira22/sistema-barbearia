@@ -41,7 +41,9 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			Barbeiro b3 = new Barbeiro(null, "22222", "BARBEIRO ADMIN", "barbeiro-admin@gmail.com", bc.encode("1234"));
 			
 			b3.addPerfil(Perfil.ADMIM);
+			
 	
+			
 			
 			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
 			Servico s2 = new Servico(null, "SOBRANCELHA", 10.50, 30);
@@ -56,7 +58,11 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			
 			br.saveAll(Arrays.asList(b1, b2,b3));
 			sr.saveAll(Arrays.asList(s1, s2,s3));
+			System.out.println("\n\n\n\n");
 	
+			Barbeiro barbeiro = br.findByEmail("aldo@gmail.com");
+			System.out.println("Barbbeiro : "+barbeiro.getNome());
+			System.out.println("Email : "+barbeiro.getEmail());
 		
 	}
 

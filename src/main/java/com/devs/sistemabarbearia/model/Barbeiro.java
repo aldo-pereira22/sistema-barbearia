@@ -46,7 +46,7 @@ public class Barbeiro implements Serializable {
 	private Agenda agenda;
 	
 	
-//	@ManyToMany(mappedBy = "barbeiros")
+	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "barbeiros")
 	private List<Servico> servicos = new ArrayList<Servico>();
@@ -154,10 +154,6 @@ public class Barbeiro implements Serializable {
 			return false;
 		return true;
 	}
-
-
-	
-
 
 	
 }

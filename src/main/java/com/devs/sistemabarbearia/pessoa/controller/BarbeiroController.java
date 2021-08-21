@@ -4,9 +4,6 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +25,6 @@ import javassist.tools.rmi.ObjectNotFoundException;
 //@CrossOrigin(origins ="*" )
 public class BarbeiroController {
 
-	@Autowired
-	BarbeiroRepository barbeiroRepository;
 	
 	@Autowired
 	BarbeiroService barbeiroService;
@@ -39,13 +34,14 @@ public class BarbeiroController {
 
 	@GetMapping("/barbeiros")
 	public List<Barbeiro> listaBarbeiros(){
-		return barbeiroRepository.findAll();
+		
+		return barbeiroService.findAll();
 	}
 	
 	@GetMapping("/barbeiro/{id}")
 	public Barbeiro buscaBarbeiroId(@PathVariable(value = "id") Long id) throws ObjectNotFoundException {
 		
-		Barbeiro barbeiro = barbeiroRepository.findByid(id);
+		Barbeiro barbeiro =barbeiro = barbeiroService.findById(id);
 		if(barbeiro == null) {
 			throw new ObjectNotFoundException("Barbeiro com ID: "+id+ " Não encontrado!");
 		}
@@ -55,23 +51,24 @@ public class BarbeiroController {
 	
 	@PostMapping("/barbeiro")
 	 public Barbeiro salvarBarbeiro(@RequestBody Barbeiro barbeiro) {
-		barbeiro = barbeiroRepository.save(barbeiro);
+		barbeiro = barbeiroService.save(barbeiro);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(barbeiro.getId()).toUri();
 //		return ResponseEntity.created(uri).build(); 
-		return barbeiroRepository.save(barbeiro);
+		return barbeiroService.save(barbeiro);
 	}
 	
 	@DeleteMapping("/barbeiro")
 	 public void deletaPessoa(@RequestBody Barbeiro barbeiro) {
-		barbeiroRepository.delete(barbeiro);	
+//		barbeiroRepository.delete(barbeiro);
+		barbeiroService.delete(barbeiro);
 		
 //		barbeiroService.delete(barbeiro);
 	}
 	
 	@PutMapping("/barbeiro")
 	public Barbeiro update(@RequestBody Barbeiro barbeiro) {
-		return barbeiroRepository.save(barbeiro);
+		return barbeiroService.save(barbeiro);
 	}
 	
 	

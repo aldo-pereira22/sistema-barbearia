@@ -22,13 +22,10 @@ public class JWTAutheticationFilter  extends UsernamePasswordAuthenticationFilte
 
 	@Autowired
 	private AuthenticationManager authentication;
-	
-	
+		
 	@Autowired
 	private JWTUtil jwtUtil;
-	
 
-	
 	public JWTAutheticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil  ) {
 		this.authentication = authenticationManager;
 		this.jwtUtil = jwtUtil;		
@@ -40,8 +37,12 @@ public class JWTAutheticationFilter  extends UsernamePasswordAuthenticationFilte
 					)throws AuthenticationException{
 		
 		try {
+
 			CredenciaisDTO creds = new ObjectMapper()
 					.readValue(req.getInputStream(), CredenciaisDTO.class);
+			
+		
+		
 			UsernamePasswordAuthenticationToken authToken =  new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getSenha(), new ArrayList<>());
 			
 			Authentication auth = authentication.authenticate(authToken);
@@ -63,7 +64,7 @@ public class JWTAutheticationFilter  extends UsernamePasswordAuthenticationFilte
 
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
 		String token = jwtUtil.generateToken(username);
-		res.addHeader("Authorization", "Bearer" + token);
+		res.addHeader("Authorization", "Bearer " + token);
 		
 	}
 
