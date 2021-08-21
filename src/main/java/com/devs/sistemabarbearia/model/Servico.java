@@ -30,6 +30,7 @@ public class Servico implements Serializable {
 	private double valor;
 	private int tempo;
 	
+	
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	@JoinTable(name = "BARBEIRO_SERVICO",

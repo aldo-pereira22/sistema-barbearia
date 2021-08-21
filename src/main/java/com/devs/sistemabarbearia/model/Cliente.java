@@ -1,11 +1,16 @@
 package com.devs.sistemabarbearia.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +27,30 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String email;
 	
+	@JsonIgnore
+	private String senha;
+	
+	
+
+    @OneToMany(
+            mappedBy = "cliente",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+        )
+	private List<ReservaDeServico> reservas = new ArrayList<ReservaDeServico>();
+	
+    
+    public void addReserva(ReservaDeServico reservaDeServico) {
+        reservas.add(reservaDeServico);
+        reservaDeServico.setCliente(this);
+    }
+    
+    
+    public void removeReserva(ReservaDeServico reservaDeServico) {
+    	reservas.remove(reservaDeServico);
+    	reservaDeServico.setCliente(null);
+    }
+    
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
@@ -35,6 +64,10 @@ public class Cliente implements Serializable {
 		this.senha = senha;
 	}
 	
+	public void setReservas(List<ReservaDeServico> reservas) {
+		this.reservas = reservas;
+	}
+
 	
 	
 	@Override
@@ -64,8 +97,7 @@ public class Cliente implements Serializable {
 
 
 
-	@JsonIgnore
-	private String senha;
+
 	
 	public Long getId() {
 		return id;
@@ -97,6 +129,10 @@ public class Cliente implements Serializable {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public List<ReservaDeServico> getReservas() {
+		return reservas;
 	}
 
 

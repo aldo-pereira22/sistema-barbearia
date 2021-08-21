@@ -9,11 +9,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.devs.sistemabarbearia.model.Barbeiro;
-import com.devs.sistemabarbearia.model.Horario;
+import com.devs.sistemabarbearia.model.Cliente;
+import com.devs.sistemabarbearia.model.ReservaDeServico;
 import com.devs.sistemabarbearia.model.Servico;
 import com.devs.sistemabarbearia.model.enums.Perfil;
 import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
 import com.devs.sistemabarbearia.pessoa.repository.ServicoRepository;
+import com.devs.sistemabarbearia.service.ClienteService;
+import com.devs.sistemabarbearia.service.ReservaServicoService;
 
 @SpringBootApplication
 public class SistemaBarbeariaApplication implements CommandLineRunner {
@@ -23,10 +26,16 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	BarbeiroRepository br;
 	
 	@Autowired
+	ReservaServicoService rs;
+	
+	@Autowired
 	BCryptPasswordEncoder bc;
 	
 	@Autowired
 	ServicoRepository sr;
+	
+	@Autowired
+	ClienteService cs;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaBarbeariaApplication.class, args);
@@ -40,6 +49,26 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			Barbeiro b2 = new Barbeiro(null, "22222", "João", "joao@gmail.com", bc.encode("1234"));
 			Barbeiro b3 = new Barbeiro(null, "22222", "BARBEIRO ADMIN", "barbeiro-admin@gmail.com", bc.encode("1234"));
 			
+			
+		
+			Cliente cliente = new Cliente(
+					null, "1111", "Marcos", "marcos-@gmail.com","1234");			
+			
+			cliente.addReserva(new ReservaDeServico() );
+			
+			cs.salvarCliente(cliente);
+//			cs.excluir(cliente);
+			
+
+
+		
+		
+			
+
+//			rs.salvar(reserva);
+//			cliente.getReservas().addAll(Arrays.asList(reserva));
+			
+		
 			b3.addPerfil(Perfil.ADMIM);
 			
 	
