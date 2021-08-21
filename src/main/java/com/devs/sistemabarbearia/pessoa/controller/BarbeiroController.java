@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devs.sistemabarbearia.model.Barbeiro;
 import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
+import com.devs.sistemabarbearia.service.BarbeiroService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -29,6 +30,11 @@ public class BarbeiroController {
 
 	@Autowired
 	BarbeiroRepository barbeiroRepository;
+	
+	@Autowired
+	BarbeiroService barbeiroService;
+	
+	
 	
 
 	@GetMapping("/barbeiros")
@@ -48,16 +54,19 @@ public class BarbeiroController {
 	}
 	
 	@PostMapping("/barbeiro")
-	 public ResponseEntity<?> salvarBarbeiro(@RequestBody Barbeiro barbeiro) {
+	 public Barbeiro salvarBarbeiro(@RequestBody Barbeiro barbeiro) {
 		barbeiro = barbeiroRepository.save(barbeiro);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(barbeiro.getId()).toUri();
-		return ResponseEntity.created(uri).build(); 
+//		return ResponseEntity.created(uri).build(); 
+		return barbeiroRepository.save(barbeiro);
 	}
 	
 	@DeleteMapping("/barbeiro")
 	 public void deletaPessoa(@RequestBody Barbeiro barbeiro) {
 		barbeiroRepository.delete(barbeiro);	
+		
+//		barbeiroService.delete(barbeiro);
 	}
 	
 	@PutMapping("/barbeiro")

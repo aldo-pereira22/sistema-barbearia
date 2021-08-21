@@ -11,12 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.devs.sistemabarbearia.model.enums.Perfil;
 
 public class UserSS  implements UserDetails {
-
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+
 	private Long id;
 	private String email;
 	private String senha;

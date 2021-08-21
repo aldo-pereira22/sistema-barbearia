@@ -15,7 +15,7 @@ public class UserDetailsImpl implements UserDetailsService{
 
 	@Autowired
 	private BarbeiroRepository br;
-	
+	 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Barbeiro barbeiro =  br.findByEmail(email);

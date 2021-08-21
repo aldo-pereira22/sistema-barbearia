@@ -30,10 +30,8 @@ public class JWTAutheticationFilter  extends UsernamePasswordAuthenticationFilte
 
 	
 	public JWTAutheticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil  ) {
-		
 		this.authentication = authenticationManager;
-		this.jwtUtil = jwtUtil;
-		
+		this.jwtUtil = jwtUtil;		
 	}
 	
 	
@@ -60,7 +58,7 @@ public class JWTAutheticationFilter  extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
                                             FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
+                                            Authentication auth) throws IOException, ServletException {	 
 	
 
 		String username = ((UserSS) auth.getPrincipal()).getUsername();

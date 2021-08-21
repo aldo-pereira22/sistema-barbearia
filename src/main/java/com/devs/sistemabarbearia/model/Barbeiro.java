@@ -17,6 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.devs.sistemabarbearia.model.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -43,7 +46,9 @@ public class Barbeiro implements Serializable {
 	private Agenda agenda;
 	
 	
-	@ManyToMany(mappedBy = "barbeiros")
+//	@ManyToMany(mappedBy = "barbeiros")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "barbeiros")
 	private List<Servico> servicos = new ArrayList<Servico>();
 	
 
