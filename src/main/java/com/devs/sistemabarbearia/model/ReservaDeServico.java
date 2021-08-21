@@ -33,6 +33,14 @@ public class ReservaDeServico {
     
    
 
+	public Servico getServicos() {
+		return servicos;
+	}
+
+	public void setServicos(Servico servicos) {
+		this.servicos = servicos;
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}

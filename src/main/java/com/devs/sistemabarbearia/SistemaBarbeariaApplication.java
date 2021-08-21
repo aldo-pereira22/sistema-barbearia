@@ -49,12 +49,21 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			Barbeiro b2 = new Barbeiro(null, "22222", "João", "joao@gmail.com", bc.encode("1234"));
 			Barbeiro b3 = new Barbeiro(null, "22222", "BARBEIRO ADMIN", "barbeiro-admin@gmail.com", bc.encode("1234"));
 			
+			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
+			Servico s2 = new Servico(null, "SOBRANCELHA", 10.50, 30);
+			Servico s3 = new Servico(null, "PROGRESSIVA", 50.89, 20);
+			
 			
 		
 			Cliente cliente = new Cliente(
 					null, "1111", "Marcos", "marcos-@gmail.com","1234");			
 			
-			cliente.addReserva(new ReservaDeServico() );
+		
+			
+			ReservaDeServico reserva = new ReservaDeServico();
+			
+			
+			cliente.addReserva(reserva);
 			
 			cs.salvarCliente(cliente);
 //			cs.excluir(cliente);
@@ -74,9 +83,7 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	
 			
 			
-			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
-			Servico s2 = new Servico(null, "SOBRANCELHA", 10.50, 30);
-			Servico s3 = new Servico(null, "PROGRESSIVA", 50.89, 20);
+
 			
 			b1.getServicos().addAll(Arrays.asList(s1, s2, s3));
 			b2.getServicos().addAll(Arrays.asList(s2));
@@ -87,6 +94,9 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			
 			br.saveAll(Arrays.asList(b1, b2,b3));
 			sr.saveAll(Arrays.asList(s1, s2,s3));
+			reserva.setServicos(s1);
+			rs.salvar(reserva);
+			rs.delete(reserva);
 			System.out.println("\n\n\n\n");
 	
 			Barbeiro barbeiro = br.findByEmail("aldo@gmail.com");

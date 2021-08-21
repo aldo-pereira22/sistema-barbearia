@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -47,7 +48,7 @@ public class Servico implements Serializable {
 		this.valor = valor;
 		this.tempo = tempo;
 	}
-
+	
 	public Servico() {
 		// TODO Auto-generated constructor stub
 	}
