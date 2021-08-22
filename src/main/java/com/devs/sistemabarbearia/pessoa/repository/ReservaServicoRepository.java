@@ -10,7 +10,7 @@ import com.devs.sistemabarbearia.model.ReservaDeServico;
 @Repository
 public interface ReservaServicoRepository  extends JpaRepository<ReservaDeServico, Long>{
 
-	ReservaDeServico findByid(long ind);
+	ReservaDeServico findByid(Long ind);
 
 		
 }

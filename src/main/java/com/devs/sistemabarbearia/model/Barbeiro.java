@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class Barbeiro implements Serializable {
 	private Set<Integer> perfis =  new HashSet<>();
 	
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REFRESH)
 	private Agenda agenda;
 	
 	

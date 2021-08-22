@@ -31,7 +31,7 @@ public class Cliente implements Serializable {
 	private String senha;
 	
 	
-
+	@JsonIgnore
     @OneToMany(
             mappedBy = "cliente",
             cascade = CascadeType.ALL,

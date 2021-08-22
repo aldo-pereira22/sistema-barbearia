@@ -1,11 +1,15 @@
 package com.devs.sistemabarbearia.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -21,11 +25,16 @@ public class ReservaDeServico {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;	
 
-	@ManyToOne
-	private Agenda agenda;
+	@ManyToOne()
+	@JoinColumn(name = "agenda_id")
+	private Agenda agenda; 
 	
-
-    @ManyToOne(fetch = FetchType.LAZY)
+//  Anotação para previnir o erro: No serializer found for class 
+//	org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor
+//	and no properties discovered to create BeanSerializer 
+//fonte: https://stackoverflow.com/questions/52656517/no-serializer-found-for-class-org-hibernate-proxy-pojo-bytebuddy-bytebuddyinterc
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Cliente cliente;
     
     @ManyToOne

@@ -53,6 +53,7 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			Barbeiro b1 = new Barbeiro(null, "11111", "Aldo","aldo@gmail.com", bc.encode("1234"));
 			Barbeiro b2 = new Barbeiro(null, "22222", "João", "joao@gmail.com", bc.encode("1234"));
 			Barbeiro b3 = new Barbeiro(null, "22222", "BARBEIRO ADMIN", "barbeiro-admin@gmail.com", bc.encode("1234"));
+			b3.addPerfil(Perfil.ADMIM);
 			
 			Servico s1 = new Servico(null, "CORTE DE CABELO", 15.25, 30);
 			Servico s2 = new Servico(null, "SOBRANCELHA", 10.50, 30);
@@ -83,7 +84,7 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 //			cliente.getReservas().addAll(Arrays.asList(reserva));
 			
 		
-			b3.addPerfil(Perfil.ADMIM);
+	
 			
 	
 			
@@ -101,12 +102,16 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			sr.saveAll(Arrays.asList(s1, s2,s3));
 			reserva.setServicos(s1);
 			rs.salvar(reserva);
-			rs.delete(reserva);
+//			rs.delete(reserva);
 			System.out.println("\n\n\n\n");
 
-			Agenda agenda = new Agenda(null, b3);
+			Agenda agenda = new Agenda();
 			as.save(agenda);
 			b3.setAgenda(agenda);
+			reserva.setAgenda(agenda);
+			rs.salvar(reserva);
+//			rs.delete(reserva);
+//			as.delete(agenda);
 			br.save(b3);
 	}
 

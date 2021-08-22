@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -21,11 +24,21 @@ public class Agenda {
 	private Long id;
 	
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REFRESH)
 	private Barbeiro barbeiro;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(mappedBy = "agenda" )
 	List<ReservaDeServico> listaDeReservas = new ArrayList<ReservaDeServico>();
+
+
+	public void setListaDeReservas(List<ReservaDeServico> listaDeReservas) {
+		this.listaDeReservas = listaDeReservas;
+	}
+	
+	
+
 	
 	public Agenda() {
 		// TODO Auto-generated constructor stub
