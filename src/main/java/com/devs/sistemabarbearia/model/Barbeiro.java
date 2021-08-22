@@ -42,6 +42,7 @@ public class Barbeiro implements Serializable {
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis =  new HashSet<>();
 	
+
 	@OneToOne
 	private Agenda agenda;
 	

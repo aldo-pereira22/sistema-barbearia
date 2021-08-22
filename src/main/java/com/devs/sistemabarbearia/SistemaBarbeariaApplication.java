@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.devs.sistemabarbearia.model.Agenda;
 import com.devs.sistemabarbearia.model.Barbeiro;
 import com.devs.sistemabarbearia.model.Cliente;
 import com.devs.sistemabarbearia.model.ReservaDeServico;
@@ -15,6 +16,7 @@ import com.devs.sistemabarbearia.model.Servico;
 import com.devs.sistemabarbearia.model.enums.Perfil;
 import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
 import com.devs.sistemabarbearia.pessoa.repository.ServicoRepository;
+import com.devs.sistemabarbearia.service.AgendaService;
 import com.devs.sistemabarbearia.service.ClienteService;
 import com.devs.sistemabarbearia.service.ReservaServicoService;
 
@@ -36,6 +38,9 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	
 	@Autowired
 	ClienteService cs;
+	
+	@Autowired
+	AgendaService as;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaBarbeariaApplication.class, args);
@@ -98,11 +103,11 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			rs.salvar(reserva);
 			rs.delete(reserva);
 			System.out.println("\n\n\n\n");
-	
-			Barbeiro barbeiro = br.findByEmail("aldo@gmail.com");
-			System.out.println("Barbbeiro : "+barbeiro.getNome());
-			System.out.println("Email : "+barbeiro.getEmail());
-		
+
+			Agenda agenda = new Agenda(null, b3);
+			as.save(agenda);
+			b3.setAgenda(agenda);
+			br.save(b3);
 	}
 
 }
