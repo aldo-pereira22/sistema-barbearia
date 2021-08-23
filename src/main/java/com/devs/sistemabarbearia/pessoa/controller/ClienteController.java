@@ -26,7 +26,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 
-	@GetMapping("/cliente")
+	@GetMapping("/clientes")
 	public List<ClienteDTO> listaClientes(){
 		List<Cliente> list = clienteService.buscarTodos();
 		List<ClienteDTO> listDTO =  list.stream().map( cliente-> new ClienteDTO(cliente)).collect(Collectors.toList());

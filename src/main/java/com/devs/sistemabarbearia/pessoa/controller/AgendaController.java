@@ -32,7 +32,7 @@ public class AgendaController {
 	
 	
 
-	@GetMapping("/agenda")
+	@GetMapping("/agendas")
 	public List<Agenda> listaBarbeiros(){		
 		return service.findAll();
 	}

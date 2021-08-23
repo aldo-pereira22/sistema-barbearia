@@ -38,6 +38,11 @@ public class BarbeiroService {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
+
+	public void saveAll(List<Barbeiro> asList) {
+		repository.saveAll(asList);
+		
+	}
 	
 
 }

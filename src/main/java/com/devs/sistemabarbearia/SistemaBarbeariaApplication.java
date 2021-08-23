@@ -17,6 +17,7 @@ import com.devs.sistemabarbearia.model.enums.Perfil;
 import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
 import com.devs.sistemabarbearia.pessoa.repository.ServicoRepository;
 import com.devs.sistemabarbearia.service.AgendaService;
+import com.devs.sistemabarbearia.service.BarbeiroService;
 import com.devs.sistemabarbearia.service.ClienteService;
 import com.devs.sistemabarbearia.service.ReservaServicoService;
 
@@ -25,7 +26,7 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 
 	
 	@Autowired
-	BarbeiroRepository br;
+	BarbeiroService br;
 	
 	@Autowired
 	ReservaServicoService rs;
@@ -108,11 +109,20 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			Agenda agenda = new Agenda();
 			as.save(agenda);
 			b3.setAgenda(agenda);
-			reserva.setAgenda(agenda);
-			rs.salvar(reserva);
-//			rs.delete(reserva);
-//			as.delete(agenda);
+			agenda.setBarbeiro(b3);
 			br.save(b3);
+			reserva.setAgenda(agenda);
+			agenda.getListaDeReservas().addAll(Arrays.asList(reserva));
+			rs.salvar(reserva);
+			as.save(agenda);
+			
+//			b3.setAgenda(agenda);
+//			br.delete(b3);
+			
+//			rs.delete(reserva);
+			
+//			as.delete(agenda);
+
 	}
 
 }

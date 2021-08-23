@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,13 +25,20 @@ public class Agenda {
 	private Long id;
 	
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.REFRESH)
+	@OneToOne(cascade = CascadeType.MERGE)
 	private Barbeiro barbeiro;
 	
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@OneToMany(mappedBy = "agenda" )
+	@OneToMany(mappedBy = "agenda" , fetch = FetchType.EAGER)
 	List<ReservaDeServico> listaDeReservas = new ArrayList<ReservaDeServico>();
+
+
+	public List<ReservaDeServico> getListaDeReservas() {
+		return listaDeReservas;
+	}
+
+
 
 
 	public void setListaDeReservas(List<ReservaDeServico> listaDeReservas) {

@@ -8,7 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -25,9 +27,10 @@ public class ReservaDeServico {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;	
 
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "agenda_id")
-	private Agenda agenda; 
+	private Agenda agenda;
 	
 //  Anotação para previnir o erro: No serializer found for class 
 //	org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor
@@ -41,7 +44,10 @@ public class ReservaDeServico {
     private Servico servicos;
     
    
-
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")
+    private Pagamento pagamento;
+    
+    
 	public Servico getServicos() {
 		return servicos;
 	}
@@ -72,6 +78,14 @@ public class ReservaDeServico {
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
+	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 
 

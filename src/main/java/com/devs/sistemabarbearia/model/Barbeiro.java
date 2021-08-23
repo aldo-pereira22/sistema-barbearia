@@ -44,7 +44,7 @@ public class Barbeiro implements Serializable {
 	private Set<Integer> perfis =  new HashSet<>();
 	
 
-	@OneToOne(cascade = CascadeType.REFRESH)
+	@OneToOne(cascade = CascadeType.REFRESH, orphanRemoval = true)
 	private Agenda agenda;
 	
 	

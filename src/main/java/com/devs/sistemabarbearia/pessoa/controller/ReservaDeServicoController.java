@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.devs.sistemabarbearia.model.Barbeiro;
 import com.devs.sistemabarbearia.model.ReservaDeServico;
-import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
-import com.devs.sistemabarbearia.service.BarbeiroService;
 import com.devs.sistemabarbearia.service.ReservaServicoService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -34,13 +31,13 @@ public class ReservaDeServicoController {
 	
 	
 
-	@GetMapping("/reserva")
+	@GetMapping("/reservas")
 	public List<ReservaDeServico> listaBarbeiros(){
 		
 		return service.findAll();
 	}
 	
-	@GetMapping("/reserva-de-servico/{id}")
+	@GetMapping("/reserva/{id}")
 	public ReservaDeServico buscarPorId(@PathVariable(value = "id") Long id) throws ObjectNotFoundException {
 		
 		ReservaDeServico reserva = service.findById(id);
