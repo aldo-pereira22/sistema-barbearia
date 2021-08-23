@@ -8,7 +8,7 @@ import com.devs.sistemabarbearia.model.Cliente;
 @Repository
 public interface PessoaRepository  extends JpaRepository<Cliente, Long>{
 
-	Cliente findByid(long ind);
+	Cliente findByid(Long ind);
 	
 	
 }

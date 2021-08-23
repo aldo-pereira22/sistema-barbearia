@@ -44,7 +44,10 @@ public class ReservaDeServico {
     private Servico servicos;
     
    
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")
+  
+
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")
     private Pagamento pagamento;
     
     

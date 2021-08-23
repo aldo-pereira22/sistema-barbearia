@@ -17,6 +17,40 @@ public class Pagamento {
 	@MapsId
 	private ReservaDeServico reserva;
 	
-	private Double valor;
+	private Double valorTotal;
+	
+	private boolean pago = false;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public ReservaDeServico getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(ReservaDeServico reserva) {
+		this.reserva = reserva;
+	}
+
+	public Double getValor() {
+		return valorTotal;
+	}
+
+	public void setValor(Double valor) {
+		this.valorTotal = valor;
+	}
+
+	public boolean isPago() {
+		return pago;
+	}
+
+	public void setPago(boolean pago) {
+		this.pago = pago;
+	}
 	
 }

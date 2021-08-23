@@ -13,7 +13,7 @@ import com.devs.sistemabarbearia.service.AgendaService;
 @Repository
 public interface BarbeiroRepository  extends JpaRepository<Barbeiro, Long>{
 
-	Barbeiro findByid(long ind);
+	Barbeiro findByid(Long ind);
 	
 	
 	@Transactional(readOnly=true)

@@ -27,9 +27,6 @@ public class ReservaDeServicoController {
 	
 	@Autowired
 	ReservaServicoService service;
-	
-	
-	
 
 	@GetMapping("/reservas")
 	public List<ReservaDeServico> listaBarbeiros(){

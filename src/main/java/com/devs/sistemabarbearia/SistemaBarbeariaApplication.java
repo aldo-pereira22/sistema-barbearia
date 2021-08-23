@@ -1,7 +1,6 @@
 package com.devs.sistemabarbearia;
 
-import java.util.Arrays;
-
+import java.util.Arrays;import org.apache.tomcat.util.http.ConcurrentDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,14 +10,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.devs.sistemabarbearia.model.Agenda;
 import com.devs.sistemabarbearia.model.Barbeiro;
 import com.devs.sistemabarbearia.model.Cliente;
+import com.devs.sistemabarbearia.model.Horario;
+import com.devs.sistemabarbearia.model.HorarioAtendimento;
+import com.devs.sistemabarbearia.model.Pagamento;
 import com.devs.sistemabarbearia.model.ReservaDeServico;
 import com.devs.sistemabarbearia.model.Servico;
 import com.devs.sistemabarbearia.model.enums.Perfil;
 import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
+import com.devs.sistemabarbearia.pessoa.repository.HorarioAtendimentoRepository;
 import com.devs.sistemabarbearia.pessoa.repository.ServicoRepository;
 import com.devs.sistemabarbearia.service.AgendaService;
 import com.devs.sistemabarbearia.service.BarbeiroService;
 import com.devs.sistemabarbearia.service.ClienteService;
+import com.devs.sistemabarbearia.service.HorarioService;
 import com.devs.sistemabarbearia.service.ReservaServicoService;
 
 @SpringBootApplication
@@ -27,6 +31,9 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	
 	@Autowired
 	BarbeiroService br;
+	
+	@Autowired
+	HorarioService hs;
 	
 	@Autowired
 	ReservaServicoService rs;
@@ -43,6 +50,8 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 	@Autowired
 	AgendaService as;
 	
+	@Autowired
+	HorarioAtendimentoRepository ha;
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaBarbeariaApplication.class, args);
 	}
@@ -116,7 +125,23 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			rs.salvar(reserva);
 			as.save(agenda);
 			
-//			b3.setAgenda(agenda);
+			Pagamento pgto = new Pagamento();
+			pgto.setReserva(reserva);
+			
+			reserva.setPagamento(pgto);
+			
+			HorarioAtendimento horarioAtendimento = new HorarioAtendimento();
+			ha.save(horarioAtendimento);
+			
+			
+			agenda.setHorarioAtendimento(horarioAtendimento);
+			horarioAtendimento.setAgenda(agenda);
+			ha.save(horarioAtendimento);
+			
+			ha.delete(horarioAtendimento);
+			
+
+			//			b3.setAgenda(agenda);
 //			br.delete(b3);
 			
 //			rs.delete(reserva);

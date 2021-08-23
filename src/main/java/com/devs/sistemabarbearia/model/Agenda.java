@@ -28,6 +28,8 @@ public class Agenda {
 	@OneToOne(cascade = CascadeType.MERGE)
 	private Barbeiro barbeiro;
 	
+	@OneToOne
+	private HorarioAtendimento horarioAtendimento;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "agenda" , fetch = FetchType.EAGER)
@@ -36,6 +38,20 @@ public class Agenda {
 
 	public List<ReservaDeServico> getListaDeReservas() {
 		return listaDeReservas;
+	}
+
+
+
+
+	public HorarioAtendimento getHorarioAtendimento() {
+		return horarioAtendimento;
+	}
+
+
+
+
+	public void setHorarioAtendimento(HorarioAtendimento horarioAtendimento) {
+		this.horarioAtendimento = horarioAtendimento;
 	}
 
 
