@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,9 +28,17 @@ public class Servico implements Serializable {
 	private Long id;
 	private String nome;
 	private double valor;
-	private int tempo;
+	private int tempoDuracao;
 	
 	
+	public int getTempoDuracao() {
+		return tempoDuracao;
+	}
+
+	public void setTempoDuracao(int tempoDuracao) {
+		this.tempoDuracao = tempoDuracao;
+	}
+
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	@JoinTable(name = "BARBEIRO_SERVICO",
@@ -41,12 +48,12 @@ public class Servico implements Serializable {
 	private List<Barbeiro> barbeiros = new ArrayList<Barbeiro>();
 	
 	
-	public Servico(Long id, String nome, double valor, int tempo) {
+	public Servico(Long id, String nome, double valor, int tempoDuracao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.valor = valor;
-		this.tempo = tempo;
+		this.tempoDuracao = tempoDuracao;
 	}
 	
 	public Servico() {
@@ -69,14 +76,6 @@ public class Servico implements Serializable {
 
 	public void setValor(double valor) {
 		this.valor = valor;
-	}
-
-	public int getTempo() {
-		return tempo;
-	}
-
-	public void setTempo(int tempo) {
-		this.tempo = tempo;
 	}
 
 	public Long getId() {

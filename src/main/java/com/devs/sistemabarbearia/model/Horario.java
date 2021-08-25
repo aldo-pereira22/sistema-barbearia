@@ -1,6 +1,7 @@
 package com.devs.sistemabarbearia.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +17,36 @@ public class Horario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private boolean ativo;	
-	private LocalDate inicio;
-	private LocalDate fim;
+	private Date inicio;
+	private Date fim;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getInicio() {
+		return inicio;
+	}
+
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
+	}
+
+	public ReservaDeServico getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(ReservaDeServico reserva) {
+		this.reserva = reserva;
+	}
+
+	public void setFim(Date fim) {
+		this.fim = fim;
+	}
 
 	@OneToOne(mappedBy = "horario")
 	private ReservaDeServico reserva;
@@ -34,22 +63,6 @@ public class Horario {
 		this.ativo = ativo;
 	}
 
-	public LocalDate getInicio() {
-		return inicio;
-	}
-
-	public void setInicio(LocalDate inicio) {
-		this.inicio = inicio;
-	}
-
-	public LocalDate getFim() {
-		return fim;
-	}
-
-	public void setFim(LocalDate fim) {
-		this.fim = fim;
-	}
-	
 	
 	
 	

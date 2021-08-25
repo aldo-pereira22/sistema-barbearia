@@ -16,8 +16,11 @@ public class Pagamento {
 	@JoinColumn(name = "reserva_serviço_id")
 	@MapsId
 	private ReservaDeServico reserva;
-	
 	private Double valorTotal;
+	
+	private String descricao;
+	
+	private String formaPagamento;
 	
 	private boolean pago = false;
 
@@ -51,6 +54,22 @@ public class Pagamento {
 
 	public void setPago(boolean pago) {
 		this.pago = pago;
+	}
+
+	public String getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(String formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 }

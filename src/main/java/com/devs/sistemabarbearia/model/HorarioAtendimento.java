@@ -44,7 +44,8 @@ public class HorarioAtendimento {
 //	public void setLista_de_horario(List<Horario> lista_de_horario) {
 //		this.lista_de_horario = lista_de_horario;
 //	}
-
+	
+	
 	public List<Agenda> getAgendas() {
 		return agendas;
 	}
