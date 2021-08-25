@@ -117,6 +117,7 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 
 			Agenda agenda = new Agenda();
 			as.save(agenda);
+			
 			b3.setAgenda(agenda);
 			agenda.setBarbeiro(b3);
 			br.save(b3);
@@ -135,17 +136,20 @@ public class SistemaBarbeariaApplication implements CommandLineRunner {
 			
 			
 			agenda.setHorarioAtendimento(horarioAtendimento);
-			horarioAtendimento.setAgenda(agenda);
 			ha.save(horarioAtendimento);
+			as.save(agenda);
 			
-			ha.delete(horarioAtendimento);
-			
+			agenda.setHorarioAtendimento(null);
+			as.save(agenda);
+//			as.delete(agenda);
 
-			//			b3.setAgenda(agenda);
+			
+//			ha.delete(horarioAtendimento);
+			
+//			b3.setAgenda(agenda);
 //			br.delete(b3);
 			
-//			rs.delete(reserva);
-			
+//			rs.delete(reserva);			
 //			as.delete(agenda);
 
 	}

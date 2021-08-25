@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devs.sistemabarbearia.model.Barbeiro;
-import com.devs.sistemabarbearia.pessoa.repository.BarbeiroRepository;
 import com.devs.sistemabarbearia.service.BarbeiroService;
 
 import javassist.tools.rmi.ObjectNotFoundException;

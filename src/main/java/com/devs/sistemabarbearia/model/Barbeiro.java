@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
@@ -44,7 +45,8 @@ public class Barbeiro implements Serializable {
 	private Set<Integer> perfis =  new HashSet<>();
 	
 
-	@OneToOne(cascade = CascadeType.REFRESH, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "agenda_id", referencedColumnName = "id")
 	private Agenda agenda;
 	
 	

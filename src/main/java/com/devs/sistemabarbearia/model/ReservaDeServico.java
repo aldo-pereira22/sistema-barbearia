@@ -2,16 +2,15 @@ package com.devs.sistemabarbearia.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -27,6 +26,7 @@ public class ReservaDeServico {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;	
 
+	
 	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "agenda_id")
@@ -36,15 +36,27 @@ public class ReservaDeServico {
 //	org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor
 //	and no properties discovered to create BeanSerializer 
 //fonte: https://stackoverflow.com/questions/52656517/no-serializer-found-for-class-org-hibernate-proxy-pojo-bytebuddy-bytebuddyinterc
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+//	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	
+	
+	@OneToOne
     private Cliente cliente;
     
     @ManyToOne
     private Servico servicos;
     
-   
-  
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Horario horario;
+
+	public Horario getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Horario horario) {
+		this.horario = horario;
+	}
 
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "reserva")

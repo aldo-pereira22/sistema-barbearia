@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devs.sistemabarbearia.model.Cliente;
 import com.devs.sistemabarbearia.model.Horario;
 import com.devs.sistemabarbearia.pessoa.repository.HorarioRepository;
 

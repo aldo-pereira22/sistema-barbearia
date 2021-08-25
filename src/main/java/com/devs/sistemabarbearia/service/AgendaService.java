@@ -20,9 +20,7 @@ public class AgendaService {
 	}
 
 	public void delete(Agenda agenda) {
-
-		repository.delete(agenda);
-		
+		repository.delete(agenda);		
 	}
 
 	public Agenda findById(Long id) {
